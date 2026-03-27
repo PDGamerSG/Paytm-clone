@@ -104,6 +104,7 @@ router.put("/", authMiddleware, async (req, res) => {
             message: "Error while updating information"
         })
     }
+
     await User.updateOne(req.body, {
         id: req.userId
     })
@@ -115,6 +116,7 @@ router.put("/", authMiddleware, async (req, res) => {
 
 router.get("/bulk", async (req, res) => {
     const filter = req.query.filter || "";
+
     const users = await User.find({
         $or: [{
             firstName: {
